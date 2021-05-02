@@ -1,0 +1,10 @@
+<%- include('../partials/header') %>
+
+<div>
+    <% recipes.forEach(function(r){ %>
+        <p><%= r.name %></p>
+        <p><%= r.category %></p>
+        <p><%= r.prepTime %></p>
+    <% }); %>
+</div>
+<%- include('../partials/footer') %>

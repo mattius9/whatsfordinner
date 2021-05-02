@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<form action='/recipes' method='POST'>
+    <label for="name">Name:</label>
+    <input type="text" name="name"/>
+    <label for="category">Category:</label>
+    <input type="text" name="category"/>
+    <label for="prepTime">Preparation Time:</label>
+    <input type="number" name="prepTime"/>
+    <label for="ingredients">Ingredients</label>
+    <input type="search" name="q" id="ingredient-search"/>
+    <button>Search</button>
+    <label for="directions"></label>
+    <textarea name="directions" cols="30" rows="10" placeholder="Write in a list format"></textarea>
+    <input type="submit" value="Add Recipe">
+</form>
+
+<%- include('../partials/footer') %>

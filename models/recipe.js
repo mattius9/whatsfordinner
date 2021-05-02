@@ -6,6 +6,7 @@ const recipeSchema = new Schema({
     category: { type: String},
     prepTime: {type: Number, required: true},
     ingredients: [{type: Schema.Types.ObjectId, ref: 'Ingredient'}],
+    directions: { type: String, required: true}
 
 }, {
     timestamps: true
