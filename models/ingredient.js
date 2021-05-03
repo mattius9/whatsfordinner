@@ -3,10 +3,7 @@ const Schema = mongoose.Schema;
 
 const ingredientSchema = new Schema({
     name: {type: String, required: true},
-    category: { type: String},
-    quantity: {type: Number},
-    unit: { type: String}
-
+    category: { type: String}
 }, {
     timestamps: true
 })

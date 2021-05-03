@@ -2,9 +2,34 @@
 
 <div>
     <% recipes.forEach(function(r){ %>
-        <p><%= r.name %></p>
-        <p><%= r.category %></p>
-        <p><%= r.prepTime %></p>
+        <div class="card" style="width: 50rem">
+            <img src="" alt="<%=r.name%>" class="card-img-top">
+            <div class="card-body">
+                
+                <h5 class="card-title"><%= r.name %></h5>            
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><%= r.category %></li>
+                <li class="list-group-item"><%= r.prepTime %></li>
+                <a class='btn btn-outline-secondary btn-sm' href="/recipes/<%=r._id%>/edit">Update Recipe</a>
+            </ul>
+                <a class='btn btn-outline-secondary btn-sm' data-toggle='collapse' href="#<%=r.name.replace(/\s/g,'')%>" role='button' aria-expanded="false" aria-controls="<%=r.name.replace(/\s/g,'')%>">Directions</a>
+                <% if (r.directions) { %>
+                    <div class='collapse' id="<%=r.name.replace(/\s/g,'')%>">
+                        <div class="card card-body">
+                            <p><%= r.directions %></p>
+                        </div>
+                    </div>
+                <% }else{ %>
+                    <div class='collapse' id="<%=r.name.replace(/\s/g,'')%>">
+                        <div class="card card-body">
+                            No Directions Yet
+                            <a href="/recipes/<%=r._id%>/edit">Update Recipe</a>
+                        </div>
+                    </div>
+                <%} %>
+                </div>
+        
     <% }); %>
 </div>
 <%- include('../partials/footer') %>

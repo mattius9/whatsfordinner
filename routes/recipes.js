@@ -9,4 +9,13 @@ router.get('/recipes', recipesCtrl.index);
 router.get('/recipes/new', recipesCtrl.new);
 /* GET recipe detail */
 
+/* GET recipe update form */
+router.get('/recipes/:id/edit', recipesCtrl.editForm);
+
+/* POST new recipe */
+router.post('/recipes', recipesCtrl.create);
+
+/* PUT update recipe */
+router.put('/recipes/:id', recipesCtrl.update);
+
 module.exports = router;
