@@ -13,6 +13,6 @@ exports.ingredients = [
 ]
 
 exports.recipes = [
-    {name: 'Spaghetti and Meatballs', category: 'Pasta', prepTime: '40', ingredients: []}
+    {name: 'Spaghetti and Meatballs', category: 'Pasta', prepTime: '40', ingredients: [], directions: 'test'}
 
 ]

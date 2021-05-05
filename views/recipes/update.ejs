@@ -2,33 +2,45 @@
 <form action='/recipes/<%=recipe._id%>?_method=PUT' method='POST'>
     <div class="row">
         <div class="form-group col-md-7">
-            <label for="name">Name:</label>
+            <label for="name">Name</label>
             <input type="text" class="form-control" name="name" value="<%=recipe.name%>"/>
         </div>
         <div class="form-group col-md">
-            <label for="category">Category:</label>
+            <label for="category">Category</label>
             <input type="text" class="form-control" name="category" value="<%=recipe.category%>"/>
         </div>
         <div class="form-group col-md">
-            <label for="prepTime">Preparation Time:</label>
+            <label for="prepTime">Preparation Time</label>
             <input type="number" class="form-control" name="prepTime" value="<%=recipe.prepTime%>"/> 
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-md-7">
-            <label for="ingredients">Ingredients</label>
+        <div class="form-group col-auto">
+            <label for="ingredient-search">Ingredient Search</label>
             <input type="search" class="form-control" name="q" id="ingredient-search"/>
         </div>
-        <div class="form-group col">
+        <div class="form-group col-auto">
             <label></label>
-            <button class="btn btn-outline-secondary form-control">Search</button>
+            <button class="btn btn-outline-secondary form-control" id="ingredient-search-btn" data-toggle="modal" data-target="#exampleModal">Search</button>
         </div>       
     </div>
     <div class="form-group">
-        <label for="directions"></label>
+        <label for="ingredients">Ingredients</label>
+        <ul class="form-control list-group" name="ingredients" id="ingredient-list">
+            <% if(recipe.ingredients.length) { %>
+                <% recipe.ingredients.forEach(function(i) { %>
+                    <li class='list-group-item'><%=i.ingredient.name%> (<%=i.amount%> <%=i.unit%>)</li>
+                <% }); %>
+            <% }else{ %>
+                No Ingredients Yet
+            <% } %>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label for="directions">Directions</label>
         <textarea class="form-control" name="directions" cols="30" rows="10"><%=recipe.directions%></textarea>
     </div>
    <input type="submit" class="btn btn-outline-secondary" value="Update Recipe">
 </form>
-
+<%- include('../partials/searchResults') %>
 <%- include('../partials/footer') %>

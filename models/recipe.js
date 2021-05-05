@@ -8,11 +8,11 @@ const recipeIngredientSchema = new Schema({
 
 })
 const recipeSchema = new Schema({
-    name: {type: String, required: true},
+    name: {type: String },
     category: { type: String},
-    prepTime: {type: Number, required: true},
+    prepTime: {type: Number },
     ingredients: [recipeIngredientSchema],
-    directions: { type: String, required: true}
+    directions: { type: String}
 
 }, {
     timestamps: true

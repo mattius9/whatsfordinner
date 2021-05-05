@@ -7,4 +7,8 @@ a {
   color: #00B7FF;
 }
 
+.ingredient-option:hover{
+  background-color: aqua;
+}
+
 

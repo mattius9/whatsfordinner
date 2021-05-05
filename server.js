@@ -4,11 +4,14 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
+require('dotenv').config();
 require('./config/database');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const recipesRouter = require('./routes/recipes');
+const ingredientsAPIRouter = require('./routes/api/ingredients');
+const ingredientsRouter = require('./routes/ingredients');
 
 const app = express();
 
@@ -26,6 +29,8 @@ app.use(methodOverride('_method'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/', recipesRouter);
+app.use('/api', ingredientsAPIRouter);
+app.use('/', ingredientsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

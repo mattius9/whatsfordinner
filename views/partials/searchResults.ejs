@@ -1,0 +1,26 @@
+  <!-- Search Results Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Search Results</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="/recipes/<%=recipe._id%>/ingredients?_method=PUT" method="POST">
+            <div class="modal-body">
+                <select name="ingredientId" id="ingredient-search-results"></select>
+                <label for="amount">Amount</label>
+                <input type="number" class="form-control" name="amount" placeholder="how much of ingredient"/>
+                <label for="unit">Unit</label>
+                <input type="text" class="form-control" name="unit" placeholder="unit of measure"/>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <input type="submit" class="btn btn-primary" id="ingredient-add-btn" value='Add Ingredient'/>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

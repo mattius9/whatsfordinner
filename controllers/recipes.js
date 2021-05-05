@@ -13,15 +13,16 @@ async function index(req,res){
     res.render('recipes/index',{ title: 'Recipes', recipes });
 }
 
-function newForm(req,res){
-    res.render('recipes/new', {title: 'Add New Recipe'})
+async function newForm(req,res){
+    const newRecipe = new Recipe();
+    await newRecipe.save();
+    res.render('recipes/new', {title: 'Add New Recipe', recipe: newRecipe})
 }
 
 async function create(req,res){
     try {
         const newRecipe = new Recipe(req.body);
-        let saveRecipe = await newRecipe.save();
-        console.log(saveRecipe);
+        await newRecipe.save();
         res.redirect('/recipes');
     } catch (err){
         console.log('ERROR' + err);
@@ -30,9 +31,8 @@ async function create(req,res){
 }
 
 async function editForm(req,res){
-    console.log(req.params.id);
     try{
-        const editRecipe = await Recipe.findById(req.params.id);
+        const editRecipe = await Recipe.findById(req.params.id).populate('ingredients.ingredient').exec();
         res.render('recipes/update', {title: "Update Recipe", recipe: editRecipe});
     } catch (err){
         res.status(500).send(err);
@@ -43,8 +43,6 @@ async function editForm(req,res){
 
 async function update(req,res){
     try{
-        console.log(req.params.id);
-        console.log(req.body);
         const recipe = await Recipe.findByIdAndUpdate(req.params.id,req.body);
         res.redirect('/recipes');
     } catch (err){
