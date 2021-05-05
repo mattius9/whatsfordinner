@@ -11,9 +11,18 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><%= r.category %></li>
                 <li class="list-group-item"><%= r.prepTime %></li>
-                <a class='btn btn-outline-secondary btn-sm' href="/recipes/<%=r._id%>/edit">Update Recipe</a>
             </ul>
-                <a class='btn btn-outline-secondary btn-sm' data-toggle='collapse' href="#<%=r.name.replace(/\s/g,'')%>" role='button' aria-expanded="false" aria-controls="<%=r.name.replace(/\s/g,'')%>">Directions</a>
+            <ul class="list-group list-group-flush">
+                <% if (r.ingredients.length) { %>
+                    <% r.ingredients.forEach(function(i){ %>
+                        <li class="list-group-item"><%= i.ingredient.name %></li>                    
+                    <% });%>
+                <% }else{ %>
+                    <li class="list-group-item">No Ingredients Yet</li>
+                <%}%>
+            </ul>
+            <a class='btn btn-outline-secondary btn-sm' href="/recipes/<%=r._id%>/edit">Update Recipe</a>
+            <a class='btn btn-outline-secondary btn-sm' data-toggle='collapse' href="#<%=r.name.replace(/\s/g,'')%>" role='button' aria-expanded="false" aria-controls="<%=r.name.replace(/\s/g,'')%>">Directions</a>
                 <% if (r.directions) { %>
                     <div class='collapse' id="<%=r.name.replace(/\s/g,'')%>">
                         <div class="card card-body">

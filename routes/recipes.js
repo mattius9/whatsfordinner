@@ -9,6 +9,9 @@ router.get('/recipes', recipesCtrl.index);
 router.get('/recipes/new', recipesCtrl.new);
 /* GET recipe detail */
 
+/* GET recipe search by ingredient */
+router.get('/recipes/search', recipesCtrl.search);
+
 /* GET recipe update form */
 router.get('/recipes/:id/edit', recipesCtrl.editForm);
 

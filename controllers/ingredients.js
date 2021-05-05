@@ -14,7 +14,7 @@ async function addToRecipe(req,res){
         recipe.ingredients.push({ingredient: req.body.ingredientId, amount: req.body.amount, unit: req.body.unit});
         await recipe.save();
         console.log(`Current Pages URL: ${req.url}`);
-        res.redirect(`/recipes/${req.params.id}/edit`); // must redirect to previous page
+        res.redirect(`/recipes/${req.params.id}/edit`);
 
         
     } catch(err){

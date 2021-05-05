@@ -8,13 +8,13 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/recipes/<%=recipe._id%>/ingredients?_method=PUT" method="POST">
+        <form>
             <div class="modal-body">
                 <select name="ingredientId" id="ingredient-search-results"></select>
                 <label for="amount">Amount</label>
-                <input type="number" class="form-control" name="amount" placeholder="how much of ingredient"/>
+                <input type="number" class="form-control" name="amount" placeholder="how much of ingredient" id="amount"/>
                 <label for="unit">Unit</label>
-                <input type="text" class="form-control" name="unit" placeholder="unit of measure"/>
+                <input type="text" class="form-control" name="unit" placeholder="unit of measure" id="unit"/>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

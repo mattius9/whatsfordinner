@@ -1,17 +1,18 @@
 <%- include('../partials/header') %>
-<form action='/recipes' method='POST'>
+<form id = "new-recipe-form">
+    <!-- action='/recipes' method='POST' -->
     <div class="row">
         <div class="form-group col-md-7">
             <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" placeholder="Ratatouille ..."/>
+            <input type="text" class="form-control" name="name" id="recipe-name" placeholder="Ratatouille ..."/>
         </div>
         <div class="form-group col-md">
             <label for="category">Category</label>
-            <input type="text" class="form-control" name="category" placeholder="Type of Cuisine"/>
+            <input type="text" class="form-control" name="category" id="category" placeholder="Type of Cuisine"/>
         </div>
         <div class="form-group col-md">
             <label for="prepTime">Preparation Time</label>
-            <input type="number" class="form-control" name="prepTime" placeholder="Time in minutes"/> 
+            <input type="number" class="form-control" name="prepTime" id="prep-time"placeholder="Time in minutes"/> 
         </div>
     </div>
     <div class="row">
@@ -27,20 +28,14 @@
     <div class="form-group">
         <label for="ingredients">Ingredients</label>
         <ul class="form-control list-group" name="ingredients" id="ingredient-list">
-            <% if(recipe.ingredients.length) { %>
-                <% recipe.ingredients.forEach(function(i) { %>
-                    <li class='list-group-item'><%=i.ingredient.name%> (<%=i.amount%> <%=i.unit%>)</li>
-                <% }); %>
-            <% }else{ %>
-                No Ingredients Yet
-            <% } %>
+   
         </ul>
     </div>
     <div class="form-group">
         <label for="directions">Directions</label>
-        <textarea class="form-control" name="directions" cols="30" rows="10" placeholder="Steps to make your recipe ..."></textarea>
+        <textarea class="form-control" name="directions" cols="30" rows="10" id="directions" placeholder="Steps to make your recipe ..."></textarea>
     </div>
-    <input type="submit" class="btn btn-outline-secondary" value="Add Recipe">
+    <button class="btn btn-outline-secondary" id="add-recipe">Add Recipe</button>
 </form>
 <%- include('../partials/searchResults') %>
 <%- include('../partials/footer') %>

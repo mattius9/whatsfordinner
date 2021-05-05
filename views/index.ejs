@@ -1,3 +1,7 @@
 <%- include('./partials/header') %>
-
+<form action="/recipes/search">
+    <label for="ingredientQuery">What's In The Fridge?</label>
+    <input type="search" name="ingredientQuery" id=""/>
+    <input type="submit" value="Search">
+</form>
 <%- include('./partials/footer') %>
