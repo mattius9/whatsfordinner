@@ -25,7 +25,6 @@ async function create(req,res){
         await newRecipe.save();
         res.status(200).json({url: '/recipes'});
     } catch (err){
-        console.log('ERROR' + err);
         res.status(500).send(err);
     }
 }
@@ -51,7 +50,6 @@ async function update(req,res){
             
         );
         await recipe.save();
-        console.log(recipe);
         res.status(200).json({url: '/recipes'})
     } catch (err){
         res.status(500).send(err);
@@ -61,9 +59,8 @@ async function update(req,res){
 
 async function search(req,res){
     try{
-        console.log(req.query.q);
-        const ingredient = await Ingredient.find({name: req.query.q});
-        const recipes = await Recipe.find({"ingredients.ingredient" : ingredient});
+        const ingredient = await Ingredient.find({$or: [{name: req.query.q}, {category: req.query.q}]});
+        const recipes = await Recipe.find({"ingredients.ingredient" : ingredient}).populate('ingredients.ingredient').exec();
         res.render('recipes/index',{ title: 'Recipes Found', recipes });
 
     } catch (err){

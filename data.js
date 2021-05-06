@@ -34,5 +34,5 @@ exports.ingredients = [
 exports.recipes = [
     {name: 'Spaghetti and Meatballs', category: 'Pasta', prepTime: '40', ingredients: [], directions: 'test'},
     {name: 'Oven Roasted Baby Potatoes', prepTime: '50', ingredients: [], directions: ''}
-
+    //add the rest of the recipes
 ]

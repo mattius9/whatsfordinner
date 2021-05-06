@@ -7,6 +7,7 @@ router.get('/recipes', recipesCtrl.index);
 
 /* GET new flight form */
 router.get('/recipes/new', recipesCtrl.new);
+
 /* GET recipe detail */
 
 /* GET recipe search by ingredient */
@@ -20,5 +21,7 @@ router.post('/recipes', recipesCtrl.create);
 
 /* PUT update recipe */
 router.put('/recipes/:id', recipesCtrl.update);
+
+/* DELETE recipe */
 
 module.exports = router;

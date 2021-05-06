@@ -1,5 +1,5 @@
 let ingredientArray = [];
-
+// Cached Elements
 const recipeIdEl = document.getElementById('recipe-id');
 const ingredientSearchBtn = document.getElementById('ingredient-search-btn');
 const ingredientAddBtn = document.getElementById('ingredient-add-btn');
@@ -33,7 +33,6 @@ addRecipeBtn.addEventListener('click', addRecipe);
 async function updateRecipe(e){
     e.preventDefault();
     try{
-        console.log(recipeIdEl.value);
         let response = await fetch(`/recipes/${recipeIdEl.value}`, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
@@ -45,7 +44,6 @@ async function updateRecipe(e){
                 ingredients: ingredientArray
             })
         });
-        console.log(ingredientArray);
         response = await response.json();
         window.location.replace(response.url);
     }catch(err){
@@ -79,7 +77,6 @@ async function searchIngredients(e){
     const ingredientQuery = searchBar.value;
     const response = await fetch(`/api/ingredients/${ingredientQuery}`);
     const ingredients = await response.json();
-    console.log(ingredients);
     let html = ingredients.result.reduce((html,ing) => html +
     `<option value='${ing._id}' data-name='${ing.name}'>${ing.name} (${ing.category})</option>`, '');
     searchResults.innerHTML = html;
