@@ -23,5 +23,6 @@ router.post('/recipes', recipesCtrl.create);
 router.put('/recipes/:id', recipesCtrl.update);
 
 /* DELETE recipe */
+router.delete('/recipes/:id', recipesCtrl.delete);
 
 module.exports = router;

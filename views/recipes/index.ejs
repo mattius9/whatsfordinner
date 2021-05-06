@@ -9,8 +9,7 @@
                 <h5 class="card-title"><%= r.name %></h5>            
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><%= r.category %></li>
-                <li class="list-group-item"><%= r.prepTime %></li>
+                <li class="list-group-item"><%= r.category %> - <%= r.prepTime %>mins</li>
             </ul>
             <ul class="list-group list-group-flush">
                 <% if (r.ingredients.length) { %>
@@ -21,23 +20,27 @@
                     <li class="list-group-item">No Ingredients Yet</li>
                 <%}%>
             </ul>
-            <a class='btn btn-outline-secondary btn-sm' href="/recipes/<%=r._id%>/edit">Update Recipe</a>
             <a class='btn btn-outline-secondary btn-sm' data-toggle='collapse' href="#<%=r.name.replace(/\s/g,'')%>" role='button' aria-expanded="false" aria-controls="<%=r.name.replace(/\s/g,'')%>">Directions</a>
-                <% if (r.directions) { %>
-                    <div class='collapse' id="<%=r.name.replace(/\s/g,'')%>">
-                        <div class="card card-body">
-                            <p><%= r.directions %></p>
-                        </div>
+            <% if (r.directions) { %>
+                <div class='collapse' id="<%=r.name.replace(/\s/g,'')%>">
+                    <div class="card card-body">
+                        <p><%= r.directions %></p>
                     </div>
-                <% }else{ %>
-                    <div class='collapse' id="<%=r.name.replace(/\s/g,'')%>">
-                        <div class="card card-body">
-                            No Directions Yet
-                            <a href="/recipes/<%=r._id%>/edit">Update Recipe</a>
-                        </div>
-                    </div>
-                <%} %>
                 </div>
+            <% }else{ %>
+                <div class='collapse' id="<%=r.name.replace(/\s/g,'')%>">
+                    <div class="card card-body">
+                        No Directions Yet
+                        <a href="/recipes/<%=r._id%>/edit">Update Recipe</a>
+                    </div>
+                </div>
+            <%} %>
+            <a class='btn btn-outline-secondary btn-sm' href="/recipes/<%=r._id%>/edit">Update Recipe</a>
+            <form action="/recipes/<%=r._id%>?_method=DELETE" method="POST">
+                <button type="submit" class='btn btn-outline-secondary btn-sm' >Delete Recipe</button>
+            </form>
+            
+        </div>
         
     <% }); %>
 </div>

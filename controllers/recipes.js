@@ -8,6 +8,7 @@ module.exports = {
     editForm,
     update,
     search,
+    delete: deleteOne
 }
 
 async function index(req,res){
@@ -64,6 +65,15 @@ async function search(req,res){
         res.render('recipes/index',{ title: 'Recipes Found', recipes });
 
     } catch (err){
+        res.status(500).send(err);
+    }
+}
+
+async function deleteOne(req,res){
+    try{
+        const recipe = await Recipe.findByIdAndDelete(req.params.id);
+        console.log(recipe);
+    } catch(err){
         res.status(500).send(err);
     }
 }
