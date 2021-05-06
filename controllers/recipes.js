@@ -1,4 +1,5 @@
 const Recipe = require('../models/recipe');
+const Ingredient = require('../models/ingredient');
 
 module.exports = {
     index,
@@ -15,18 +16,13 @@ async function index(req,res){
 }
 
 async function newForm(req,res){
-    //const newRecipe = new Recipe();
-    //await newRecipe.save();
-    res.render('recipes/new', {title: 'Add New Recipe'/*, recipe: newRecipe*/})
+    res.render('recipes/new', {title: 'Add New Recipe'})
 }
 
 async function create(req,res){
     try {
-        console.log(`This is the body ${req.body}`);
-        console.log(req.body);
         const newRecipe = await Recipe.create(req.body);
         await newRecipe.save();
-        //res.redirect('/recipes');
         res.status(200).json({url: '/recipes'});
     } catch (err){
         console.log('ERROR' + err);
@@ -45,8 +41,18 @@ async function editForm(req,res){
 
 async function update(req,res){
     try{
-        const recipe = await Recipe.findByIdAndUpdate(req.params.id,req.body);
-        res.redirect('/recipes');
+        const recipe = await Recipe.findOneAndUpdate({_id: req.params.id},
+            {name: req.body.name,
+            category: req.body.category,
+            prepTime: req.body.prepTime,
+            directions: req.body.directions,
+            $push: {ingredients: {$each: req.body.ingredients}}
+        },
+            
+        );
+        await recipe.save();
+        console.log(recipe);
+        res.status(200).json({url: '/recipes'})
     } catch (err){
         res.status(500).send(err);
 
@@ -55,7 +61,8 @@ async function update(req,res){
 
 async function search(req,res){
     try{
-        const ingredient = await Ingredient.find({name: req.body.ingredientQuery});
+        console.log(req.query.q);
+        const ingredient = await Ingredient.find({name: req.query.q});
         const recipes = await Recipe.find({"ingredients.ingredient" : ingredient});
         res.render('recipes/index',{ title: 'Recipes Found', recipes });
 

@@ -1,17 +1,18 @@
 <%- include('../partials/header') %>
-<form action='/recipes/<%=recipe._id%>?_method=PUT' method='POST'>
+<form id="update-recipe-form">
     <div class="row">
         <div class="form-group col-md-7">
+            <input type="hidden" id="recipe-id" value="<%=recipe._id%>"/>
             <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" value="<%=recipe.name%>"/>
+            <input type="text" class="form-control" name="name" id="recipe-name" value="<%=recipe.name%>"/>
         </div>
         <div class="form-group col-md">
             <label for="category">Category</label>
-            <input type="text" class="form-control" name="category" value="<%=recipe.category%>"/>
+            <input type="text" class="form-control" name="category" id="category" value="<%=recipe.category%>"/>
         </div>
         <div class="form-group col-md">
             <label for="prepTime">Preparation Time</label>
-            <input type="number" class="form-control" name="prepTime" value="<%=recipe.prepTime%>"/> 
+            <input type="number" class="form-control" name="prep-time" id="prep-time" value="<%=recipe.prepTime%>"/> 
         </div>
     </div>
     <div class="row">
@@ -38,9 +39,9 @@
     </div>
     <div class="form-group">
         <label for="directions">Directions</label>
-        <textarea class="form-control" name="directions" cols="30" rows="10"><%=recipe.directions%></textarea>
+        <textarea class="form-control" name="directions" id="directions" cols="30" rows="10"><%=recipe.directions%></textarea>
     </div>
-   <input type="submit" class="btn btn-outline-secondary" value="Update Recipe">
+   <button class="btn btn-outline-secondary" id="update-recipe" >Update Recipe</button>
 </form>
 <%- include('../partials/searchResults') %>
 <%- include('../partials/footer') %>

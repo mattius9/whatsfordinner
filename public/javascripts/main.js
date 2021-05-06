@@ -1,6 +1,6 @@
 let ingredientArray = [];
 
-
+const recipeIdEl = document.getElementById('recipe-id');
 const ingredientSearchBtn = document.getElementById('ingredient-search-btn');
 const ingredientAddBtn = document.getElementById('ingredient-add-btn');
 const searchBar = document.getElementById('ingredient-search');
@@ -8,6 +8,7 @@ const searchResults = document.getElementById('ingredient-search-results');
 const ingredientList = document.getElementById('ingredient-list');
 
 const addRecipeBtn = document.getElementById('add-recipe');
+const updateRecipeBtn = document.getElementById('update-recipe');
 const newRecipeForm = document.getElementById('new-recipe-form');
 
 // Recipe value fields
@@ -21,13 +22,36 @@ const amountEl = document.getElementById('amount');
 const unitEl = document.getElementById('unit');
 
 
-
+/* Event Listeners */
 ingredientSearchBtn.addEventListener('click',searchIngredients);
 
 ingredientAddBtn.addEventListener('click',addIngredient);
-
+updateRecipeBtn.addEventListener('click', updateRecipe);
 addRecipeBtn.addEventListener('click', addRecipe);
 
+/* ***              */
+async function updateRecipe(e){
+    e.preventDefault();
+    try{
+        console.log(recipeIdEl.value);
+        let response = await fetch(`/recipes/${recipeIdEl.value}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                name: recipeName.value,
+                category: category.value,
+                prepTime: prepTime.value,
+                directions: directions.value,
+                ingredients: ingredientArray
+            })
+        });
+        console.log(ingredientArray);
+        response = await response.json();
+        window.location.replace(response.url);
+    }catch(err){
+        console.log(err);
+    }
+}
 async function addRecipe(e){
     e.preventDefault();
     try{
@@ -42,7 +66,6 @@ async function addRecipe(e){
                 ingredients: ingredientArray
             })
         });
-        //await response.json();
         response = await response.json();
         window.location.replace(response.url);
     }catch(err){
@@ -64,21 +87,15 @@ async function searchIngredients(e){
 
 async function addIngredient(e){
     e.preventDefault();
-    // const searchResults = document.getElementById('ingredient-search-results');
-    console.log(searchResults.value);
     let recipeIngredient = {
         ingredient: searchResults.value,
-        //name: searchResults.dataname,
         name: searchResults.options[searchResults.selectedIndex].getAttribute('data-name'),
         amount: amountEl.value,
         unit: unitEl.value
     }
     ingredientArray.push(recipeIngredient);
-    console.log(ingredientArray);
     let listItem = document.createElement('li');
     listItem.classList.add('list-group-item');
     listItem.innerText = `${recipeIngredient.name} (${recipeIngredient.amount} ${recipeIngredient.unit})`
     ingredientList.append(listItem);
 }
-
-//fetch post to recipe create
