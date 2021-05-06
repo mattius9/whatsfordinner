@@ -7,7 +7,7 @@ module.exports = {
 
 async function search(req,res){
     try{
-        let result = await Ingredient.find({$or: [{name: req.params.q}, {category: req.params.q}]});
+        let result = await Ingredient.find({$or: [{name: { $regex: new RegExp(req.params.q, 'i')}}, {category: { $regex: new RegExp(req.params.q, 'i')}}]});
         res.status(200).json({result});
     }catch(err){
         res.status(500).json(err);

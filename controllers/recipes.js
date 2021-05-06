@@ -60,7 +60,7 @@ async function update(req,res){
 
 async function search(req,res){
     try{
-        const ingredient = await Ingredient.find({$or: [{name: req.query.q}, {category: req.query.q}]});
+        const ingredient = await Ingredient.find({$or: [{name: { $regex: new RegExp(req.query.q, 'i')}}, {category: { $regex: new RegExp(req.query.q, 'i')}}]});
         const recipes = await Recipe.find({"ingredients.ingredient" : ingredient}).populate('ingredients.ingredient').exec();
         res.render('recipes/index',{ title: 'Recipes Found', recipes });
 
