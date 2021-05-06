@@ -13,7 +13,7 @@ module.exports = {
 
 async function index(req,res){
     let recipes = await Recipe.find({}).populate('ingredients.ingredient').exec();
-    res.render('recipes/index',{ title: 'Recipes', recipes });
+    res.render('recipes/index',{ title: 'Recipes', recipes, ingredient: null });
 }
 
 async function newForm(req,res){
@@ -62,7 +62,13 @@ async function search(req,res){
     try{
         const ingredient = await Ingredient.find({$or: [{name: { $regex: new RegExp(req.query.q, 'i')}}, {category: { $regex: new RegExp(req.query.q, 'i')}}]});
         const recipes = await Recipe.find({"ingredients.ingredient" : ingredient}).populate('ingredients.ingredient').exec();
-        res.render('recipes/index',{ title: 'Recipes Found', recipes });
+        console.log(recipes.length);
+        if(recipes.length > 0){
+            res.render('recipes/index',{ title: 'Recipes Found', recipes, ingredient: req.query.q});
+        }
+        else{
+            res.render('recipes/index',{ title: 'No Recipes Found', recipes, ingredient: req.query.q });
+        }
 
     } catch (err){
         res.status(500).send(err);

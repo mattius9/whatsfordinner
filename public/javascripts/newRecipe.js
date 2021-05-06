@@ -1,55 +1,31 @@
+// Global variables
 let ingredientArray = [];
 // Cached Elements
-const recipeIdEl = document.getElementById('recipe-id');
-const ingredientSearchBtn = document.getElementById('ingredient-search-btn');
-const ingredientAddBtn = document.getElementById('ingredient-add-btn');
+
 const searchBar = document.getElementById('ingredient-search');
 const searchResults = document.getElementById('ingredient-search-results');
 const ingredientList = document.getElementById('ingredient-list');
 
+// Buttons
+const ingredientSearchBtn = document.getElementById('ingredient-search-btn');
+const ingredientAddBtn = document.getElementById('ingredient-add-btn');
 const addRecipeBtn = document.getElementById('add-recipe');
-const updateRecipeBtn = document.getElementById('update-recipe');
-const newRecipeForm = document.getElementById('new-recipe-form');
 
 // Recipe value fields
-const recipeName = document.getElementById('recipe-name');
+
 const category = document.getElementById('category');
 const prepTime = document.getElementById('prep-time');
 const directions = document.getElementById('directions');
-
-
+const recipeName = document.getElementById('recipe-name');
 const amountEl = document.getElementById('amount');
 const unitEl = document.getElementById('unit');
 
-
 /* Event Listeners */
 ingredientSearchBtn.addEventListener('click',searchIngredients);
-
 ingredientAddBtn.addEventListener('click',addIngredient);
-updateRecipeBtn.addEventListener('click', updateRecipe);
 addRecipeBtn.addEventListener('click', addRecipe);
 
 /* ***              */
-async function updateRecipe(e){
-    e.preventDefault();
-    try{
-        let response = await fetch(`/recipes/${recipeIdEl.value}`, {
-            method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                name: recipeName.value,
-                category: category.value,
-                prepTime: prepTime.value,
-                directions: directions.value,
-                ingredients: ingredientArray
-            })
-        });
-        response = await response.json();
-        window.location.replace(response.url);
-    }catch(err){
-        console.log(err);
-    }
-}
 async function addRecipe(e){
     e.preventDefault();
     try{

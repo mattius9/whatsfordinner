@@ -1,7 +1,9 @@
 <%- include('./partials/header') %>
-<form action='/recipes/search' method="GET"> 
-    <label for="q">What's In The Fridge?</label>
-    <input type="search" name="q" id=""/>
-    <input type="submit" value="Search">
-</form>
+<div class="d-flex justify-content-center">
+    <form action='/recipes/search' method="GET" class="input-group mb-3"> 
+        <input class="form-control"type="search" name="q" placeholder="What's in the Fridge?"/>
+        <input class="btn btn-outline-secondary" type="submit" value="Search">
+    </form>
+</div>
+
 <%- include('./partials/footer') %>
