@@ -32,9 +32,9 @@ exports.ingredients = [
 ]
 
 exports.recipes = [
-    {name: 'Spaghetti and Meatballs', category: 'Pasta', prepTime: '40', ingredients: [], directions: ''},
-    {name: 'Caprese Salad', category: 'Salad', prepTime: '20', ingredients: [], directions: ''},
-    {name: 'Baked Salmon with Garlic and Dijon', category: 'Seafood', prepTime: '40', ingredients: [], directions: ''},
-    {name: 'Breakfast Egg Muffins', category: 'Breakfast', prepTime: '30', ingredients: [], directions: ''},
-    {name: 'Oven Roasted Baby Potatoes', category: '', prepTime: '50', ingredients: [], directions: ''}
+    {name: 'Spaghetti and Meatballs', category: 'Pasta', prepTime: '40', ingredients: [], directions: '' ,image: 'https://i.imgur.com/GlAYOFk.jpeg'},
+    {name: 'Caprese Salad', category: 'Salad', prepTime: '20', ingredients: [], directions: '', image: 'https://i.imgur.com/AslAYGx.jpeg' },
+    {name: 'Baked Salmon with Garlic and Dijon', category: 'Seafood', prepTime: '40', ingredients: [], directions: '', image: 'https://i.imgur.com/HoopkDu.jpeg' },
+    {name: 'Breakfast Egg Muffins', category: 'Breakfast', prepTime: '30', ingredients: [], directions: '' ,image: 'https://i.imgur.com/rgaw8Hu.jpeg'},
+    {name: 'Oven Roasted Baby Potatoes', category: '', prepTime: '50', ingredients: [], directions: '', image: 'https://i.imgur.com/CZsFFvs.jpeg' }
 ]

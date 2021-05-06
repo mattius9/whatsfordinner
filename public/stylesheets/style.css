@@ -17,7 +17,7 @@ img {
   height: 250px;
 }
 
-.bg-nav,.input-group,.input-group-text{
+.bg-nav,.input-group,.input-group-text,.card{
   background-color: rgb(144, 223, 148);
 }
 

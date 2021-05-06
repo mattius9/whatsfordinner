@@ -12,7 +12,8 @@ const recipeSchema = new Schema({
     category: { type: String},
     prepTime: {type: Number },
     ingredients: [recipeIngredientSchema],
-    directions: { type: String}
+    directions: { type: String},
+    image: { type: String}
 
 }, {
     timestamps: true
