@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-/* mongoose.connect(process.env.DB_STRING,
+mongoose.connect(process.env.DB_STRING,
  {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true}
- );*/
+ );
 
 
-mongoose.connect('mongodb://localhost/whatsfordinner',
+/* mongoose.connect('mongodb://localhost/whatsfordinner',
 {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true}
-); 
+); */
 
 const db = mongoose.connection;
 
