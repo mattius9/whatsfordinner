@@ -13,7 +13,6 @@ const ingredientName = document.getElementById('ingredient-name');
 newIngredientBtn.addEventListener('click', newIngredient);
 
 async function newIngredient(e){
-    console.log('click');
     try{
         e.preventDefault();
         let response = await fetch('/api/ingredients', {

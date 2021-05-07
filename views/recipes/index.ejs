@@ -7,52 +7,42 @@
 <div class="d-flex justify-content-around flex-wrap m-auto">
     
     <% recipes.forEach(function(r){ %>
-        <div class="card text-white m-1" style="width: 30rem">
-            <img src="<%=r.image%>" onerror= "this.src='/images/pizza.jpg'" alt="<%=r.name%>" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title"><%= r.name %></h5>
-                <p class="card-text"><%= r.category %> - <%= r.prepTime %>mins</p>            
+        <div class="card border-light text-dark m-3" style="width: 30rem">
+            <img src="<%=r.image%>" onerror= "this.src='/images/pizza.jpg'" alt="<%=r.name%>" class="card-img">
+            <div class="card-img-overlay">
+                <h4 class="card-title"><%= r.name %></h4>
+                <p class="card-text"><%= r.category %> - <%= r.prepTime %>mins</p>
+                <a class='card-link' data-toggle='collapse' href="#<%=r.name.replace(/\s/g,'')%>" aria-expanded="false" aria-controls="<%=r.name.replace(/\s/g,'')%>">Directions</a>
+                <% if (r.directions) { %>
+                    <div class='collapse' id="<%=r.name.replace(/\s/g,'')%>">
+                        <div class="card card-body">
+                            <p><%= r.directions %></p>
+                        </div>
+                    </div>
+                <% }else{ %>
+                    <div class='collapse' id="<%=r.name.replace(/\s/g,'')%>">
+                        <div class="card card-body">
+                            No Directions Yet
+                        </div>
+                    </div>
+                <%} %>
             </div>
-            <div class="card-body">
-                
-            </div>
-            <ul class="list-group list-group-flush">
+            <ul class="ingredient-list">
                 <% if (r.ingredients.length) { %>
                     <% r.ingredients.forEach(function(i){ %>
-                        <li class="list-group-item"><%= i.ingredient.name %></li>                    
+                        <li ><%= i.ingredient.name %> (<%=i.amount%> <%=i.unit%>)</li>                    
                     <% });%>
                 <% }else{ %>
-                    <li class="list-group-item">No Ingredients Yet</li>
+                    <li >Update to add ingredients</li>
                 <%}%>
             </ul>
-            <a class='btn btn-outline-secondary btn-sm' data-toggle='collapse' href="#<%=r.name.replace(/\s/g,'')%>" role='button' aria-expanded="false" aria-controls="<%=r.name.replace(/\s/g,'')%>">Directions</a>
-            <% if (r.directions) { %>
-                <div class='collapse' id="<%=r.name.replace(/\s/g,'')%>">
-                    <div class="card card-body">
-                        <p><%= r.directions %></p>
-                    </div>
-                </div>
-            <% }else{ %>
-                <div class='collapse' id="<%=r.name.replace(/\s/g,'')%>">
-                    <div class="card card-body">
-                        No Directions Yet
-                        <a href="/recipes/<%=r._id%>/edit">Update Recipe</a>
-                    </div>
-                </div>
-            <%} %>
-                <div class="d-flex justify-content-around">
-                    <form action="/recipes/<%=r._id%>/edit" method="GET" col>
-                        <button type="submit" class='btn btn-outline-secondary btn-sm' >Update Recipe</button>
-                    </form>
-                    <form action="/recipes/<%=r._id%>?_method=DELETE" method="POST">
-                        <button type="submit" class='btn btn-outline-secondary btn-sm' >Delete Recipe</button>
-                    </form>
-                </div>
-                
-            
-            
+            <form action="/recipes/<%=r._id%>/edit" method="GET" col>
+                <button type="submit" class='btn btn-outline-secondary btn-sm update-btn' >Update Recipe</button>
+            </form>
+            <form action="/recipes/<%=r._id%>?_method=DELETE" method="POST">
+                <button type="submit" class='btn btn-outline-secondary btn-sm delete-btn' >Delete Recipe</button>
+            </form>
         </div>
-        
     <% }); %>
 </div>
 <%- include('../partials/footer') %>

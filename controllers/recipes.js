@@ -60,9 +60,8 @@ async function update(req,res){
 
 async function search(req,res){
     try{
-        const ingredient = await Ingredient.find({$or: [{name: { $regex: new RegExp(req.query.q, 'i')}}, {category: { $regex: new RegExp(req.query.q, 'i')}}]});
+        const ingredient = await Ingredient.find({$or: [{name: new RegExp(req.query.q, 'i')}, {category: new RegExp(req.query.q, 'i')}]});
         const recipes = await Recipe.find({"ingredients.ingredient" : ingredient}).populate('ingredients.ingredient').exec();
-        console.log(recipes.length);
         if(recipes.length > 0){
             res.render('recipes/index',{ title: 'Recipes Found', recipes, ingredient: req.query.q});
         }
@@ -78,7 +77,6 @@ async function search(req,res){
 async function deleteOne(req,res){
     try{
         const recipe = await Recipe.findByIdAndDelete(req.params.id);
-        console.log(recipe);
     } catch(err){
         res.status(500).send(err);
     }

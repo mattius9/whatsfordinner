@@ -14,11 +14,12 @@ a {
 img {
   object-fit: cover;
   width: 100%;
-  height: 250px;
+  height: 500px;
+  opacity: 0.7;
 }
 
-.bg-nav,.input-group,.input-group-text,.card{
-  background-color: rgb(144, 223, 148);
+.bg-nav,.input-group,.input-group-text{
+  background-color: rgb(222, 243, 128);
 }
 
 body{
@@ -29,4 +30,62 @@ body{
   max-width: 500px;
 }
 
+.card-title{
+  text-shadow: 1px 1px 2px rgb(144, 223, 148);
+  background-color: rgba(144, 223, 148, 0.5);
+}
+
+.card-body{
+  background-color: rgba(144, 223, 148);
+  z-index: +1;
+}
+
+h1,h3,.navbar-brand{
+  font-family: 'Fjalla One', sans-serif;
+}
+
+.card{
+  position: relative;
+  display: inline-block;
+  text-align:center;
+}
+
+.ingredient-list{
+  position:absolute;
+  top: 100px;
+  left: 0px;
+  list-style-type: none;
+  text-align: left;
+}
+
+.delete-btn{
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+}
+
+.update-btn{
+  position: absolute;
+  bottom: 20px;
+  right: 130px;
+}
+
+.update-btn,.delete-btn{
+  border: 2px solid  rgba(144, 223, 148, 0.5);
+  color:  black;
+}
+
+.update-btn:hover,.delete-btn:hover {
+  background-color: rgba(144, 223, 148, 0.5);
+  color: white;
+}
+
+a{
+  text-decoration: none;
+  color: forestgreen;
+}
+
+body{
+  font-size: 100%;
+}
 
