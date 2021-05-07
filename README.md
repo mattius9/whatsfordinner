@@ -2,7 +2,8 @@
 
 ### A full-stack MEN app for adding and updating recipes
 
-WRITE DESCRIPTION
+Born of the constant struggle upon opening the refrigerator and blankly gazing upon it's contents, hoping for a sign to come out from the incandescence within. This app will help you satiate your hunger by finding recipes you can make with ingredients you have. And if you don't, then a grocery list can be provided to make your recipe a reality. Add and update your own recipes, using a simple ingredient search.
+More features to come!
 
 >
 ___
@@ -32,6 +33,8 @@ ___
 [Trello Board](https://trello.com/b/RYqMpEVJ/whats-for-dinner)
 
 [Github Project Page](https://github.com/mattius9/whatsfordinner)
+
+[Heroku Deployment](https://github.com/mattius9/whatsfordinner.git)
 
 ___
 ## Future Developments
