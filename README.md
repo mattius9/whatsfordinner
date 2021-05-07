@@ -34,7 +34,7 @@ ___
 
 [Github Project Page](https://github.com/mattius9/whatsfordinner)
 
-[Heroku Deployment](https://github.com/mattius9/whatsfordinner.git)
+[Heroku Deployment](https://blooming-hamlet-89934.herokuapp.com/recipes)
 
 ___
 ## Future Developments
